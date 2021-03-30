@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>timer</title>
+  <meta name="description" content="stopwatch">
+  <meta name="author" content="Κουτσιώλης Κωνσταντινος"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ <style>
+ *{
+	margin:0;
+	padding:0;
+	border-box:box-sizing;
+ }
+	h2{
+	text-align: center;
+    position: relative;
+    top: 3em;
+    font-size: 3em;
+	}	
+ .container {
+    margin: 1em;
+    padding: 2em;
+    text-align: center;
+    position: relative;
+	}
+	#stopWatch{
+	background-color: #f5deb3;
+    position: relative;
+    top: 15em;
+    margin: 0 auto;
+	width:500px;
+	height:270px;
+	border-radius: 5px;
+	padding:2em;
+	}
+	button{	
+	color:#000;
+	font-weight:900;
+    background-color: inherit;
+    border: 1px solid #000;
+    width: 6em;
+    height: 3em;
+	border-radius: 5px;
+	cursor: pointer;
+	margin:0 0.8em 0 0.8em;
+	}
+	button:hover,
+	button:focus {
+    background: #ff6347;
+	}
+	button:focus {
+    outline: none;
+    outline-offset: 0px;
+	}
+
+	#time{
+	   background-color: #ff6347;
+	   color:white;
+	   border-radius: 5px;
+    width: 7em;
+    height: 2em;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	padding:2em;
+	}
+ 
+ </style>
+</head>
+<body>
+<h2>Stopwatch</h2>
+<section id="stopWatch">
+<div class="container">
+	<div id="time"><label id="minutes" style="font-weight:900; font-size:3em;">00</label>:<label id="seconds" style="font-weight:900;  font-size:3em;">00</label></div>
+</div>
+<div class="container">
+	<button id="start">start</button>
+	<button id="pause">pause</button>
+	<button id="reset">reset</button>
+</div>
+</section>
+<script>
+
+
+
+
+document.getElementById("start").addEventListener("click", startCount);
+document.getElementById("pause").addEventListener("click", pauseCount);
+document.getElementById("reset").addEventListener("click", resetCount);
+
+
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+var start =""; 
+
+function startCount(){
+start = setInterval(setTime, 1000);
+}
+
+function pauseCount() {
+ return clearInterval(start);
+}
+function resetCount() {
+
+  clearInterval(start);
+    secondsLabel.innerHTML = "00";
+  minutesLabel.innerHTML = "00";
+ return totalSeconds = 0;
+
+}
+
+
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+
+</script>
+</body>
+</html>
